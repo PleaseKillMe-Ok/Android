@@ -11,6 +11,9 @@ public class Result<T> {
     public final static class Success<T> extends Result {
         private T data;
 
+
+
+
         public Success(T data) {
             this.data = data;
         }

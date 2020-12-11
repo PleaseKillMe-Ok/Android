@@ -1,6 +1,6 @@
 package com.example.giao;
 
-public class Bean {
+public class Beansss {
 
     private int all_notes_counts;
     private int all_notes_visit;

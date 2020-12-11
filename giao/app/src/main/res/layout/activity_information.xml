@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tool:context=".InformationActivity">
+
+    <ImageView
+        android:id="@+id/imageViewHeadImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/default_user_logo" />
+
+
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewHeadImage"
+        android:layout_marginTop="10dp"
+        android:text="用户名："
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="35dp" />
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="334dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewName"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="35dp"
+
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:id="@+id/textViewIntegral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextName"
+        android:layout_marginTop="10dp"
+        android:text="当前积分:"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="35dp" />
+
+    <TextView
+        android:id="@+id/textViewIntegralValue"
+        android:layout_width="334dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewIntegral"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:inputType="numberPassword"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:id="@+id/textViewPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewIntegralValue"
+        android:layout_marginTop="10dp"
+        android:text="手机号:"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="35dp" />
+
+    <TextView
+        android:id="@+id/textViewPhoneValue"
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewPhone"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="35dp"
+        android:ems="10"
+        android:inputType="numberPassword"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:id="@+id/textViewMember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewPhoneValue"
+        android:layout_marginTop="10dp"
+        android:text="是否是会员:"
+        android:layout_marginLeft="35dp" />
+
+
+    <TextView
+        android:id="@+id/textViewMemberValue"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewMember"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="35dp"
+        android:ems="10"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" />
+
+    <Button
+        android:id="@+id/buttonInfoSave"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/login_button_shape"
+        android:onClick="saveInfo"
+        android:text="保存" />
+</RelativeLayout>

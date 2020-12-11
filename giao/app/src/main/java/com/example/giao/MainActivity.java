@@ -48,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ttt(View view) {
-        Call<Bean> call = service.getMenuById();
-        call.enqueue(new Callback<Bean>() {
+        Call<Beansss> call = service.getMenuById();
+        call.enqueue(new Callback<Beansss>() {
             @Override
-            public void onResponse(Call<Bean> call, Response<Bean> response) {
+            public void onResponse(Call<Beansss> call, Response<Beansss> response) {
                 if (response.isSuccessful()) {
-                    Bean result = response.body();//关键
+                    Beansss result = response.body();//关键
                     if (result != null) {
 
                         int counts = result.getAll_notes_counts();
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Bean> call, Throwable t) {
+            public void onFailure(Call<Beansss> call, Throwable t) {
                 System.out.println("请求失败");
             }
         });

@@ -1,9 +1,13 @@
 package com.example.giao;
 
+import com.example.giao.Api.User;
+
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Retrofit {
     private Test service;
+    private  retrofit2.Retrofit retrofit;
+    private User userinfo;
 
     /**
      * 获取Retrofit实例
@@ -14,19 +18,20 @@ public class Retrofit {
     }
 
     private Retrofit() {
-        retrofit2.Retrofit retrofit = new retrofit2.Retrofit.Builder()
+        retrofit = new retrofit2.Retrofit.Builder()
                 .baseUrl("https://syzzjw.cn/")
 //                .baseUrl("http://www.tngou.net/api/food/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        service = retrofit.create(Test.class);
     }
 
-    /**
-     * 获取IBeanService实例
-     * @return
-     */
     public Test getService(){
+
+        service = retrofit.create(Test.class);
         return service;
+    }
+    public User getUserInfo(){
+        userinfo = retrofit.create(User.class);
+        return userinfo;
     }
 }

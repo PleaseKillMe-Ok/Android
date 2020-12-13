@@ -77,4 +77,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    public void giao(View view) {
+        Intent it = new Intent();
+        it.setClass(MainActivity.this, ChartsActivity.class);
+        MainActivity.this.startActivity(it);
+
+    }
 }

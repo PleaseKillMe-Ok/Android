@@ -1,4 +1,4 @@
-package com.example.giao;
+package com.example.giao.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.giao.R;
 
 public class VerifyActivity extends AppCompatActivity {
     @Override

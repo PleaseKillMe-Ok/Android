@@ -5,7 +5,7 @@
     xmlns:tool="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="5dp"
-    tool:context=".RegisterActivity">
+    tool:context=".Activity.RegisterActivity">
 
     <ImageView
         android:id="@+id/imageView4"

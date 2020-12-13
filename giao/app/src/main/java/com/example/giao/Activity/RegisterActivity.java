@@ -1,8 +1,10 @@
-package com.example.giao;
+package com.example.giao.Activity;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.giao.R;
 
 public class RegisterActivity extends AppCompatActivity{
     @Override

@@ -1,4 +1,4 @@
-package com.example.giao;
+package com.example.giao.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.giao.Beansss;
+import com.example.giao.R;
+import com.example.giao.utils.Retrofit;
+import com.example.giao.Test;
 
 import retrofit2.Call;
 import retrofit2.Callback;

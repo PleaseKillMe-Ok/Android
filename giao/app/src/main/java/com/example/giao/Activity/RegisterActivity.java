@@ -1,4 +1,4 @@
-package com.example.giao;
+package com.example.giao.Activity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,6 +14,8 @@ import com.example.giao.Bean.Verification;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import com.example.giao.R;
+import com.example.giao.utils.Retrofit;
 
 public class RegisterActivity extends AppCompatActivity{
     private Retrofit retrofit;

@@ -25,12 +25,12 @@ public class RegisterActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        final Button buttonVerify = findViewById(R.id.textViewVerify);
-        Button buttonRegister = findViewById(R.id.textViewRegister);
-        //final EditText editTextPhone = findViewById(R.id.editTextPhone);
-
-        //retrofit = Retrofit.getRetrofit();
-        //sendVerification = retrofit.getVerification();
+        Button buttonVerify = findViewById(R.id.textViewVerify);
+//        Button buttonRegister = findViewById(R.id.textViewRegister);
+        final EditText editTextPhone = findViewById(R.id.editTextPhone);
+//
+        retrofit = Retrofit.getRetrofit();
+        sendVerification = retrofit.getVerification();
 
         buttonVerify.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,12 +40,12 @@ public class RegisterActivity extends AppCompatActivity{
             }
         });
 
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Register();
-            }
-        });
+//        buttonRegister.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Register();
+//            }
+//        });
     }
 
     private void Register() {

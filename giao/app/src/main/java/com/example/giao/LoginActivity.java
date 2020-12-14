@@ -14,7 +14,24 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         TextView textViewRegister = findViewById(R.id.textViewRegister);
-        TextView textViewVerify = findViewById(R.id.textViewVerify);
+        TextView textViewVerify = findViewById(R.id.tvLoginVerify);
+//        textViewRegister.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent it = new Intent();
+//                it.setClass(LoginActivity.this, RegisterActivity.class);
+//                LoginActivity.this.startActivity(it);
+//            }
+//        });
+//        textViewVerify.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent it = new Intent();
+//                it.setClass(LoginActivity.this, VerifyActivity.class);
+//                LoginActivity.this.startActivity(it);
+//            }
+//        });
+//
         textViewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 LoginActivity.this.startActivity(it);
             }
         });
+
 
     }
 }

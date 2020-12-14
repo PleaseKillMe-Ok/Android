@@ -1,5 +1,6 @@
 package com.example.giao.utils;
 
+import com.example.giao.Api.SendVerification;
 import com.example.giao.Api.User;
 import com.example.giao.Test;
 
@@ -9,6 +10,7 @@ public class Retrofit {
     private Test service;
     private  retrofit2.Retrofit retrofit;
     private User userinfo;
+    private SendVerification verification;
 
     /**
      * 获取Retrofit实例
@@ -34,5 +36,10 @@ public class Retrofit {
     public User getUserInfo(){
         userinfo = retrofit.create(User.class);
         return userinfo;
+    }
+
+    public SendVerification getVerification(){
+        verification = retrofit.create(SendVerification.class);
+        return verification;
     }
 }

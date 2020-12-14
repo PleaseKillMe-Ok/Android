@@ -8,32 +8,31 @@
     tool:context=".Activity.RegisterActivity">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         app:srcCompat="@drawable/user_reg" />
 
     <TextView
-        android:id="@+id/textViewName"
+        android:id="@+id/textViewPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView4"
+        android:layout_below="@id/imageView1"
         android:layout_marginTop="10dp"
-        android:text="昵称："
+        android:text="手机号:"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="35dp" />
 
     <EditText
-        android:id="@+id/editTextName"
+        android:id="@+id/editTextPhone"
         android:layout_width="334dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewName"
+        android:layout_below="@+id/textViewPhone"
         android:layout_marginStart="35dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="35dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Dear"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true" />
 
@@ -41,7 +40,7 @@
         android:id="@+id/textViewPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextName"
+        android:layout_below="@+id/editTextPhone"
         android:layout_marginTop="10dp"
         android:text="密码:"
         android:layout_alignParentLeft="true"
@@ -72,7 +71,7 @@
 
     <EditText
         android:id="@+id/editTextPassword2"
-        android:layout_width="332dp"
+        android:layout_width="334dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewPassword2"
         android:layout_marginStart="35dp"
@@ -83,19 +82,19 @@
         android:layout_alignParentRight="true" />
 
     <TextView
-        android:id="@+id/textViewPrompt"
+        android:id="@+id/textViewVerify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editTextPassword2"
         android:layout_marginTop="10dp"
-        android:text="密码提示:"
+        android:text="请输入验证码:"
         android:layout_marginLeft="35dp" />
 
     <EditText
-        android:id="@+id/editTextPrompt"
-        android:layout_width="324dp"
+        android:id="@+id/editTextVerify"
+        android:layout_width="334dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewPrompt"
+        android:layout_below="@+id/textViewVerify"
         android:layout_marginStart="35dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="35dp"
@@ -105,12 +104,34 @@
         android:layout_alignParentRight="true" />
 
     <Button
-        android:id="@+id/buttonRegister"
-        android:layout_width="200dp"
+        android:id="@+id/buttonVerify"
+        android:layout_width="334dp"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="30dp"
+        android:layout_below="@+id/editTextVerify"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="35dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/login_button_shape2"
+        android:text="获取验证码"
+        android:textColor="#FFFFFF"/>
+
+    <Button
+        android:id="@+id/buttonRegister"
+        android:layout_width="334dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/buttonVerify"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="35dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:background="@drawable/login_button_shape"
-        android:text="注册" />
+        android:text="注册"
+        android:textColor="#FFFFFF"/>
 </RelativeLayout>

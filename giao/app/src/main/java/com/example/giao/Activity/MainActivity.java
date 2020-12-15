@@ -84,4 +84,12 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.startActivity(it);
 
     }
+
+    public void bottom(View view) {
+        // 测试底部导航栏
+        Intent it = new Intent();
+        it.setClass(MainActivity.this, BottomMenuActivity.class);
+        MainActivity.this.startActivity(it);
+
+    }
 }

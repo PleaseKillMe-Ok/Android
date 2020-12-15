@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">giao</string>
     <string name="login_register">新用户注册</string>
+    <string name="title_activity_bottom_menu">BottomMenuActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

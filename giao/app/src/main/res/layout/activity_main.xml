@@ -20,6 +20,11 @@
         android:onClick="ttt"
         android:text="Button" />
     <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="底部导航蓝"
+        android:onClick="bottom"/>
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="giao"

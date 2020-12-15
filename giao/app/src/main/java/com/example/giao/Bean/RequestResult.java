@@ -1,11 +1,10 @@
 package com.example.giao.Bean;
 
-public class Verification {
+public class RequestResult {
     private int code;
+    private int error_code;
     private String msg;
-    private String status;
     private int data;
-    private String tip;
 
     public int getCode() {
         return code;
@@ -15,12 +14,12 @@ public class Verification {
         this.code = code;
     }
 
-    public String getStatus() {
-        return status;
+    public int getError_code() {
+        return error_code;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setError_code(int error_code) {
+        this.error_code = error_code;
     }
 
     public String getMsg() {
@@ -37,13 +36,5 @@ public class Verification {
 
     public void setData(int data) {
         this.data = data;
-    }
-
-    public String getTip() {
-        return tip;
-    }
-
-    public void setTip(String tip) {
-        this.tip = tip;
     }
 }

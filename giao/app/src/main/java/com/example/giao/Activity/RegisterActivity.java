@@ -1,5 +1,6 @@
 package com.example.giao.Activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,10 +11,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.giao.Api.SendVerification;
+import com.example.giao.Bean.Information;
+import com.example.giao.Bean.Phone;
 import com.example.giao.Bean.Verification;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.POST;
+
 import com.example.giao.R;
 import com.example.giao.utils.Retrofit;
 
@@ -27,10 +32,10 @@ public class RegisterActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Button buttonVerify = findViewById(R.id.textViewVerify);
-//        Button buttonRegister = findViewById(R.id.textViewRegister);
-        final EditText editTextPhone = findViewById(R.id.editTextPhone);
-//
+        Button buttonVerify = findViewById(R.id.buttonVerify);
+        Button buttonRegister = findViewById(R.id.buttonRegister);
+        //EditText editTextPhone = findViewById(R.id.editTextPhone);
+
         retrofit = Retrofit.getRetrofit();
         sendVerification = retrofit.getVerification();
 
@@ -38,19 +43,41 @@ public class RegisterActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 //String phone = editTextPhone.getText().toString();
-                SendRequest();
+                SendVerifyRequest();
             }
         });
 
-//        buttonRegister.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Register();
-//            }
-//        });
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Register();
+            }
+        });
     }
 
     private void Register() {
+        EditText editTextPhone = findViewById(R.id.editTextPhone);
+        EditText editTextPassword = findViewById(R.id.editTextPassword);
+        EditText editTextPassword2 = findViewById(R.id.editTextPassword2);
+        EditText editTextVerify = findViewById(R.id.editTextVerify);
+
+        String phoneNumber = editTextPhone.getText().toString().trim();
+        String password1 = editTextPassword.getText().toString().trim();
+        String password2 = editTextPassword2.getText().toString().trim();
+        String verifycCode = editTextVerify.getText().toString().trim();
+
+        if(phoneNumber.length()<1) {
+            Toast.makeText(this,"手机号不能为空",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (password1.length() < 1){
+            Toast.makeText(this,"密码不能为空.",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (!password2.equals(password1)){
+            Toast.makeText(this,"两次密码不相同.",Toast.LENGTH_LONG).show();
+            return;
+        }
 //        EditText editTextName = findViewById(R.id.editTextName);
 //        EditText editTextPassword = findViewById(R.id.editTextPassword);
 //        EditText editTextPassword2 = findViewById(R.id.editTextPassword2);
@@ -83,9 +110,9 @@ public class RegisterActivity extends AppCompatActivity{
 //        finish();
     }
 
-    private void SendRequest(){
+    private void SendVerifyRequest(){
         EditText editTextPhone = findViewById(R.id.editTextPhone);
-        String phoneNumber = editTextPhone.getText().toString();
+        String phoneNumber = editTextPhone.getText().toString().trim();
         if(phoneNumber.length()<1) {
             Toast.makeText(this,"手机号不能为空",Toast.LENGTH_LONG).show();
             return;
@@ -96,6 +123,44 @@ public class RegisterActivity extends AppCompatActivity{
         } else {
             Toast.makeText(this,"手机号不合法",Toast.LENGTH_LONG).show();
         }
+        //Information info = new Information();
+        //info.setPhone(phoneNumber);
+        Phone phone=new Phone();
+        phone.setPhone(phoneNumber);
+        System.out.println(phone.getPhone());
+
+
+        Call<Verification> call = sendVerification.getVerification(phone);
+        call.enqueue(new Callback<Verification>() {
+            @Override
+            public void onResponse(Call<Verification> call, Response<Verification> response) {
+                //response.code()
+                System.out.println(response.code());
+                if (response.isSuccessful()) {
+                    Verification result = response.body();//关键
+                    if (result != null) {
+                        int code = result.getCode();
+                        String status = result.getStatus();
+                        //mTextView.setText("counts"+counts+"praise"+praise+"visit"+visit);
+                        if(code == 2023){
+                            Toast.makeText(RegisterActivity.this,"已发送验证码！请注意查收！",Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(RegisterActivity.this,"手机号格式不正确！",Toast.LENGTH_LONG).show();
+                        }
+                        System.out.println("请求成功");
+                    }
+                }
+                else{
+                    System.out.println("----失败");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Verification> call, Throwable t) {
+                System.out.println("请求失败");
+            }
+        });
     }
 
     /**

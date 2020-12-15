@@ -1,5 +1,6 @@
 package com.example.giao.utils;
 
+import com.example.giao.Api.Register;
 import com.example.giao.Api.SendVerification;
 import com.example.giao.Api.User;
 import com.example.giao.Test;
@@ -11,6 +12,7 @@ public class Retrofit {
     private  retrofit2.Retrofit retrofit;
     private User userinfo;
     private SendVerification verification;
+    private Register register;
 
     /**
      * 获取Retrofit实例
@@ -22,8 +24,8 @@ public class Retrofit {
 
     private Retrofit() {
         retrofit = new retrofit2.Retrofit.Builder()
-                .baseUrl("https://syzzjw.cn/")
-//                .baseUrl("http://www.tngou.net/api/food/")
+//                .baseUrl("https://syzzjw.cn/")
+                .baseUrl("http://ij8cy3yo.shenzhuo.vip:11601/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
@@ -41,5 +43,10 @@ public class Retrofit {
     public SendVerification getVerification(){
         verification = retrofit.create(SendVerification.class);
         return verification;
+    }
+
+    public Register getResult(){
+        register = retrofit.create(Register.class);
+        return register;
     }
 }

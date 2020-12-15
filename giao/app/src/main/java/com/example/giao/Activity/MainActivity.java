@@ -13,11 +13,15 @@ import com.example.giao.R;
 import com.example.giao.utils.Retrofit;
 import com.example.giao.Test;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int DELAY = 3000;
     private Button mButton;
     private Retrofit retrofit;
     private Test service;
@@ -27,29 +31,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Button btn = findViewById(R.id.btn);
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent it = new Intent();
-//                it.setClass(MainActivity.this, SkipActivity.class);
-//                MainActivity.this.startActivity(it);
-//            }
-//        });
         mButton = (Button)findViewById(R.id.button);
         retrofit = Retrofit.getRetrofit();
         mTextView = (TextView) findViewById(R.id.tv_2);
         service = retrofit.getService();
 
         Button btn = findViewById(R.id.btn);
-        btn.setOnClickListener(new View.OnClickListener() {
+
+        final Intent localIntent=new Intent();//你要转向的Activity
+        localIntent.setClass(MainActivity.this, LoginActivity.class);
+        Timer timer=new Timer();
+        TimerTask task=new TimerTask() {
             @Override
-            public void onClick(View v) {
-                Intent it = new Intent();
-                it.setClass(MainActivity.this, LoginActivity.class);
-                MainActivity.this.startActivity(it);
+            public void run(){
+                MainActivity.this.startActivity(localIntent);//执行
             }
-        });
+        };
+        timer.schedule(task,DELAY);//10秒后
     }
 
     public void ttt(View view) {

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.giao">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".Activity.BottomMenuActivity"
+            android:label="@string/title_activity_bottom_menu"></activity>
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,18 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.LoginActivity">
-        </activity>
-        <activity android:name=".Activity.RegisterActivity">
-        </activity>
-        <activity android:name=".Activity.VerifyActivity">
-        </activity>
-        <activity android:name=".Activity.SkipActivity">
-        </activity>
-        <activity android:name=".Activity.InformationActivity">
-        </activity>
-        <activity android:name=".Activity.ChartsActivity">
-        </activity>
+        <activity android:name=".Activity.LoginActivity"></activity>
+        <activity android:name=".Activity.RegisterActivity"></activity>
+        <activity android:name=".Activity.VerifyActivity"></activity>
+        <activity android:name=".Activity.SkipActivity"></activity>
+        <activity android:name=".Activity.InformationActivity"></activity>
+        <activity android:name=".Activity.ChartsActivity"></activity>
     </application>
 
 </manifest>

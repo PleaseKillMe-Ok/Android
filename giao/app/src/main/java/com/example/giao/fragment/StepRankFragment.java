@@ -1,4 +1,4 @@
-package com.example.giao.Activity;
+package com.example.giao.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

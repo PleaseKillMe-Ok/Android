@@ -31,11 +31,18 @@
 <!--    </androidx.appcompat.widget.LinearLayoutCompat>-->
 
     <fragment
-        android:id="@+id/Fragment_Count_Stepss"
-        android:name="com.example.giao.Activity.CountStepsFragment"
+        android:id="@+id/contentFragment"
+        android:name="com.example.giao.fragment.CountStepsFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints" />
+    <!-- 用一个帧布局来占一个位置，目的是给fragment用 -->
+    <FrameLayout
+        android:id="@+id/fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:ignore="MissingConstraints">
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

@@ -33,9 +33,9 @@ public class BottomMenuActivity extends AppCompatActivity{
         // 设定navView的选择监听器
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         // 默认选中第一个
-        count_steps_fragment = new CountStepsFragment();
-        transaction.replace(R.id.fragment_content, count_steps_fragment);
-        transaction.commit();
+//        count_steps_fragment = new CountStepsFragment();
+//        transaction.replace(R.id.fragment_content, count_steps_fragment);
+//        transaction.commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

@@ -13,7 +13,7 @@ public class StepRankFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.step_rank_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_steps_rank, container, false);
         return view;
     }
 }

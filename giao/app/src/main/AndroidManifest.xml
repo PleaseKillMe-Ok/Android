@@ -27,6 +27,7 @@
         <activity android:name=".Activity.SkipActivity"></activity>
         <activity android:name=".Activity.InformationActivity"></activity>
         <activity android:name=".Activity.ChartsActivity"></activity>
+        <activity android:name=".Activity.CountStepsActivity"></activity>
     </application>
 
 </manifest>

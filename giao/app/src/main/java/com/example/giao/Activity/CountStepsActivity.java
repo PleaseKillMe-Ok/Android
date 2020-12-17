@@ -5,6 +5,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,6 +14,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.giao.R;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class CountStepsActivity extends AppCompatActivity implements View.OnClickListener, SensorEventListener {
     private SensorManager sManager;
@@ -25,7 +30,6 @@ public class CountStepsActivity extends AppCompatActivity implements View.OnClic
     private boolean motiveState = true;   //是否处于运动状态
     private boolean processState = false;   //标记当前是否已经在计步
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +38,37 @@ public class CountStepsActivity extends AppCompatActivity implements View.OnClic
         mSensorAccelerometer = sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sManager.registerListener(this, mSensorAccelerometer, SensorManager.SENSOR_DELAY_UI);
         bindViews();
+        System.out.println("aoligei");
+        btn_start.setText("123456");
+
+//        final Handler handler = new Handler() {
+//            @Override
+//            public void handleMessage(Message msg) {
+//                // TODO Auto-generated method stub
+//                // 要做的事情
+//                System.out.println("aoligei");
+//                super.handleMessage(msg);
+//            }
+//        };
+
+//        Timer timer=new Timer();
+//        TimerTask task = new TimerTask() {
+//            @Override
+//            public void run() {
+//                btn_start.setText("123456");
+//                //System.out.println("aoligei");
+//                //Message message = new Message();
+//                //message.what = 1;
+//                //handler.sendMessage(message);
+//            }
+//        };
+//        timer.schedule(task,2000);
     }
 
     private void bindViews() {
 
-        tv_step = (TextView) findViewById(R.id.tv_step);
-        btn_start = (Button) findViewById(R.id.btn_start);
+        tv_step = findViewById(R.id.tv_step);
+        btn_start = findViewById(R.id.btn_start);
         btn_start.setOnClickListener(this);
     }
 

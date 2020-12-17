@@ -26,6 +26,7 @@ public class RegisterActivity extends AppCompatActivity{
     private Retrofit retrofit;
     private SendVerification sendVerification;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

@@ -55,20 +55,21 @@ public class CountStepsFragment extends Fragment implements View.OnClickListener
         sManager.registerListener(this, mSensorAccelerometer, SensorManager.SENSOR_DELAY_UI);
         bindViews(view);
 
-        btn_start = view.findViewById(R.id.btn_start);
+//        btn_start = view.findViewById(R.id.btn_start);
 
         timer=new Timer();
         task = new TimerTask() {
             @Override
             public void run() {
-                btn_start.setText("123456");
+//                System.out.println(step);
+//                tv_step.setText(step+"");
                 //System.out.println("aoligei");
                 //Message message = new Message();
                 //message.what = 1;
                 //handler.sendMessage(message);
             }
         };
-        timer.schedule(task, 300000,300000);
+        timer.schedule(task, 5000,5000);
 
 
         //对视图中的控件进行初始化
@@ -94,9 +95,15 @@ public class CountStepsFragment extends Fragment implements View.OnClickListener
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-//                Toast.makeText(getActivity(), "success2", 0).show();
-                System.out.println("aoligei");
+                step = 0;
+                tv_step.setText("0");
+                if (processState == true) {
+                    btn_start.setText("开始");
+                    processState = false;
+                } else {
+                    btn_start.setText("停止");
+                    processState = true;
+                }
             }
         });
     }
@@ -106,7 +113,6 @@ public class CountStepsFragment extends Fragment implements View.OnClickListener
 
         tv_step = view.findViewById(R.id.tv_step);
         btn_start = view.findViewById(R.id.btn_start);
-        btn_start.setOnClickListener(this);
     }
 
 
@@ -149,7 +155,7 @@ public class CountStepsFragment extends Fragment implements View.OnClickListener
     public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
         step = 0;
         tv_step.setText("0");
         if (processState == true) {

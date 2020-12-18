@@ -1,10 +1,11 @@
 package com.example.giao.Bean;
 
-public class Verification {
+public class Verification {     //发送注册验证码、用户手机号注册-------成功响应体
     private int code;
     private String msg;
     private String status;
     private int data;
+    private String token;
     private String tip;
 
     public int getCode() {
@@ -37,6 +38,14 @@ public class Verification {
 
     public void setData(int data) {
         this.data = data;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getTip() {

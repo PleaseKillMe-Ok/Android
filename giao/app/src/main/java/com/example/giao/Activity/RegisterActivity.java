@@ -10,9 +10,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.giao.Api.Register;
 import com.example.giao.Api.SendVerification;
 import com.example.giao.Bean.Information;
 import com.example.giao.Bean.Phone;
+import com.example.giao.Bean.RegisterRequest;
 import com.example.giao.Bean.Verification;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +27,9 @@ import com.example.giao.utils.Retrofit;
 public class RegisterActivity extends AppCompatActivity{
     private Retrofit retrofit;
     private SendVerification sendVerification;
+    private Phone phone;
+    private RegisterRequest registerRequest;
+    private Register register;
 
 
     @Override
@@ -39,8 +44,9 @@ public class RegisterActivity extends AppCompatActivity{
 
         retrofit = Retrofit.getRetrofit();
         sendVerification = retrofit.getVerification();
+        register = retrofit.getRegisterResult();
 
-        buttonVerify.setOnClickListener(new View.OnClickListener() {
+        buttonVerify.setOnClickListener(new View.OnClickListener() {    //发送验证码按钮点击事件
             @Override
             public void onClick(View v) {
                 //String phone = editTextPhone.getText().toString();
@@ -48,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity{
             }
         });
 
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
+        buttonRegister.setOnClickListener(new View.OnClickListener() {  //注册按钮点击事件
             @Override
             public void onClick(View v) {
                 Register();
@@ -65,7 +71,17 @@ public class RegisterActivity extends AppCompatActivity{
         String phoneNumber = editTextPhone.getText().toString().trim();
         String password1 = editTextPassword.getText().toString().trim();
         String password2 = editTextPassword2.getText().toString().trim();
-        String verifycCode = editTextVerify.getText().toString().trim();
+        String verifyCode = editTextVerify.getText().toString().trim();
+        int verifyLength = verifyCode.length();
+        System.out.println(phoneNumber);
+        System.out.println(password1);
+        System.out.println(password2);
+        System.out.println(verifyCode);
+
+        registerRequest = new RegisterRequest();
+        registerRequest.setPhone(phoneNumber);
+        registerRequest.setPassword(password1);
+        registerRequest.setCode(verifyCode);
 
         if(phoneNumber.length()<1) {
             Toast.makeText(this,"手机号不能为空",Toast.LENGTH_LONG).show();
@@ -79,36 +95,42 @@ public class RegisterActivity extends AppCompatActivity{
             Toast.makeText(this,"两次密码不相同.",Toast.LENGTH_LONG).show();
             return;
         }
-//        EditText editTextName = findViewById(R.id.editTextName);
-//        EditText editTextPassword = findViewById(R.id.editTextPassword);
-//        EditText editTextPassword2 = findViewById(R.id.editTextPassword2);
-//        EditText editTextPrompt = findViewById(R.id.editTextPrompt);
-//
-//        String name = editTextName.getText().toString();
-//        if(name.length()<1) {
-//            Toast.makeText(this,"昵称不能为空",Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        String pwd = editTextPassword.getText().toString();
-//        String pwd2 = editTextPassword2.getText().toString();
-//        if (pwd.length() < 1){
-//            Toast.makeText(this,"密码不能为空.",Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//        if (!pwd.equals(pwd2)){
-//            Toast.makeText(this,"两次密码不相同.",Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//        String prompt = editTextPrompt.getText().toString();
-//        //用SharedPreferences方式存储数据
-//        SharedPreferences sp = this.getSharedPreferences("tinyaccount", Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sp.edit();
-//        editor.putString("name",name);
-//        editor.putString("password",pwd);
-//        editor.putString("prompt",prompt);
-//
-//        editor.apply();
-//        finish();
+        if(verifyLength<1) {
+            Toast.makeText(this,"验证码不能为空",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(verifyLength>0 && verifyLength!=5) {
+            Toast.makeText(this,"验证码格式不正确",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
+        Call<Verification> call = register.getRegisterResult(registerRequest);      //发送异步请求
+        call.enqueue(new Callback<Verification>() {
+            @Override
+            public void onResponse(Call<Verification> call, Response<Verification> response) {
+                System.out.println(response.code());
+                if (response.isSuccessful()) {      ///** Returns true if {@link #code()} is in the range [200..300)
+                    Verification result = response.body();//关键
+                    if (result != null) {
+                        Toast.makeText(RegisterActivity.this,"注册成功！",Toast.LENGTH_LONG).show();
+                    }
+                }
+                if(response.code()==400){
+                    Toast.makeText(RegisterActivity.this,"验证码不正确！",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(response.code()==500){
+                    Toast.makeText(RegisterActivity.this,"用户已经存在！",Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Verification> call, Throwable t) {
+                System.out.println("请求失败");
+            }
+        });
     }
 
     private void SendVerifyRequest(){
@@ -126,7 +148,7 @@ public class RegisterActivity extends AppCompatActivity{
         }
         //Information info = new Information();
         //info.setPhone(phoneNumber);
-        Phone phone=new Phone();
+        phone = new Phone();
         phone.setPhone(phoneNumber);
         System.out.println(phone.getPhone());
 
@@ -140,21 +162,13 @@ public class RegisterActivity extends AppCompatActivity{
                 if (response.isSuccessful()) {
                     Verification result = response.body();//关键
                     if (result != null) {
-                        int code = result.getCode();
-                        String status = result.getStatus();
-                        //mTextView.setText("counts"+counts+"praise"+praise+"visit"+visit);
-                        if(code == 2023){
-                            Toast.makeText(RegisterActivity.this,"已发送验证码！请注意查收！",Toast.LENGTH_LONG).show();
-                        }
-                        else{
-                            Toast.makeText(RegisterActivity.this,"手机号格式不正确！",Toast.LENGTH_LONG).show();
-                        }
-                        System.out.println("请求成功");
+//                        int code = result.getCode();
+//                        String status = result.getStatus();
+                        Toast.makeText(RegisterActivity.this,"已发送验证码！请注意查收！",Toast.LENGTH_LONG).show();
+
                     }
                 }
-                else{
-                    System.out.println("----失败");
-                }
+
             }
 
             @Override
@@ -182,80 +196,4 @@ public class RegisterActivity extends AppCompatActivity{
             return phoneNumber.matches(reg);
         }
     }
-
-//    public void verifyResult(View view) {
-//        Call<Verification> call = sendVerification.getVerification();
-//        call.enqueue(new Callback<Verification>() {
-//            @Override
-//            public void onResponse(Call<Verification> call, Response<Verification> response) {
-//                if (response.isSuccessful()) {
-//                    Verification result = response.body();//关键
-//                    if (result != null) {
-//                        int code = result.getCode();
-//                        String status = result.getStatus();
-//                        //mTextView.setText("counts"+counts+"praise"+praise+"visit"+visit);
-//                        if(code == 2023){
-//                            //Toast.makeText(this,"已发送验证码！请注意查收！",Toast.LENGTH_LONG).show();
-//                        }
-//                        else{
-//                            //Toast.makeText(this,"手机号格式不正确！",Toast.LENGTH_LONG).show();
-//                        }
-//                        System.out.println("请求成功");
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Verification> call, Throwable t) {
-//                System.out.println("请求失败");
-//            }
-//        });
-//
-//    }
 }
-
-//public class RegisterActivity extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_register);
-//        Button buttonRegister = findViewById(R.id.buttonRegister);
-//        //注册按钮的点击事件
-//        buttonRegister.setOnClickListener(v -> register());
-//    }
-//
-//    private void register(){
-//        EditText editTextName = findViewById(R.id.editTextName);
-//        EditText editTextPassword = findViewById(R.id.editTextPassword);
-//        EditText editTextPassword2 = findViewById(R.id.editTextPassword2);
-//        EditText editTextPrompt = findViewById(R.id.editTextPrompt);
-//
-//        String name = editTextName.getText().toString();
-//        if(name.length()<1) {
-//            Toast.makeText(this,"昵称不能为空",Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        String pwd = editTextPassword.getText().toString();
-//        String pwd2 = editTextPassword2.getText().toString();
-//        if (pwd.length() < 1){
-//            Toast.makeText(this,"密码不能为空.",Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//        if (!pwd.equals(pwd2)){
-//            Toast.makeText(this,"两次密码不相同.",Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//        String prompt = editTextPrompt.getText().toString();
-//        //用SharedPreferences方式存储数据
-//        SharedPreferences sp = this.getSharedPreferences("tinyaccount", Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sp.edit();
-//        editor.putString("name",name);
-//        editor.putString("password",pwd);
-//        editor.putString("prompt",prompt);
-//
-//        editor.apply();
-//        finish();
-//    }
-//
-//}

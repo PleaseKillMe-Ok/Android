@@ -1,5 +1,6 @@
 package com.example.giao.utils;
 
+import com.example.giao.Api.Login;
 import com.example.giao.Api.Register;
 import com.example.giao.Api.SendVerification;
 import com.example.giao.Api.User;
@@ -13,6 +14,7 @@ public class Retrofit {
     private User userinfo;
     private SendVerification verification;
     private Register register;
+    private Login login;
 
     /**
      * 获取Retrofit实例
@@ -45,8 +47,14 @@ public class Retrofit {
         return verification;
     }
 
-    public Register getResult(){
+    public Register getRegisterResult(){
         register = retrofit.create(Register.class);
         return register;
     }
+
+    public Login getLoginResult(){
+        login = retrofit.create(Login.class);
+        return login;
+    }
+
 }
